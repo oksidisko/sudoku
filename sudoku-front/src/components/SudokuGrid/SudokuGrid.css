@@ -1,0 +1,11 @@
+.sudoku-grid {
+  margin-bottom: 30px;
+
+
+  p {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+
