@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       {isGameStarted ? (
-        <GameBoard />
+        <GameBoard onBack={() => setIsGameStarted(false)} />
       ) : (
         <StartScreen onStart={() => setIsGameStarted(true)} />
       )}

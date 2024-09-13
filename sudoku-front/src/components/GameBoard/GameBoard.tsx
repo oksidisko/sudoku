@@ -2,8 +2,11 @@ import './GameBoard.css'
 import SudokuGrid from '../SudokuGrid/SudokuGrig.tsx'
 import GameActionButton from '../GameActionButton/GameActionButton.tsx';
 
+interface GameBoardProps {
+  onBack: () => void;  // Проп для функции возврата
+}
 
-function GameBoard() {
+function GameBoard({onBack}: GameBoardProps) {
 
     const handleUndo = () => {
       console.log('Undo clicked');
@@ -17,6 +20,10 @@ function GameBoard() {
     const handleHint = () => {
       console.log('Hint clicked');
     };
+
+  const BackIcon = () => (
+    <svg viewBox="0 0 1024 1024" fill="#000000" class="icon"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill="" /></svg>
+  );
 
   const UndoIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,9 +62,9 @@ function GameBoard() {
     <>
       <div className="game-board">
         <header className="game-board__header">
-          <button className="back-button">
+          <button className="back-button" onClick={onBack}>
           <span className="back-button__icon">
-            Назад
+            <BackIcon />
           </span>
           </button>
         </header>
