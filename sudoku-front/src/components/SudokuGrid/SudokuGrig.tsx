@@ -31,10 +31,13 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber }: SudokuGridProps)
 
   useEffect(() => {
     if (activeCell !== null && selectedNumber !== null) {
-      const updatedBoard = [...sudokuBoard];
-      updatedBoard[activeCell] = selectedNumber;
-      setSudokuBoard(updatedBoard);
-      onClearSelectedNumber();
+      // Check if the cell is not an initial cell
+      if (initialBoard[activeCell] === null) {
+        const updatedBoard = [...sudokuBoard];
+        updatedBoard[activeCell] = selectedNumber;
+        setSudokuBoard(updatedBoard);
+        onClearSelectedNumber();
+      }
     }
   }, [selectedNumber]);
 
