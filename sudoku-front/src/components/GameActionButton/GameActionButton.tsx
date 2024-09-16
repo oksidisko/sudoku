@@ -1,13 +1,11 @@
-import React from 'react';
-
 interface GameButtonProps {
   icon: JSX.Element;
   text: string;
-  tooltip: string;
+  tooltip?: string;
   onClick: () => void;
 }
 
-function GameActionButton({ icon, text, tooltip, onClick }: GameButtonProps) {
+function GameActionButton({ icon, text, onClick, tooltip }: GameButtonProps) {
   return (
     <button className="game-board__button game-board-button" onClick={onClick}>
       <span className="game-board-button__icon">{icon}</span>
