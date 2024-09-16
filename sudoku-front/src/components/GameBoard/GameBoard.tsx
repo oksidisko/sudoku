@@ -4,7 +4,7 @@ import SudokuGrid from '../SudokuGrid/SudokuGrig.tsx'
 import GameActionButton from '../GameActionButton/GameActionButton.tsx';
 
 interface GameBoardProps {
-  onBack: () => void;  // Проп для функции возврата
+  onBack: () => void;
 }
 
 function GameBoard({onBack}: GameBoardProps) {
@@ -12,7 +12,7 @@ function GameBoard({onBack}: GameBoardProps) {
   const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
 
   const handleNumberClick = (number: number) => {
-    setSelectedNumber(number); // Устанавливаем выбранную цифру
+    setSelectedNumber(number);
   };
   const handleClearSelectedNumber = () => {
     setSelectedNumber(null);

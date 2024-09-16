@@ -1,5 +1,5 @@
 interface GameButtonProps {
-  icon: Element;
+  icon: JSX.Element;
   text: string;
   tooltip?: string;
   onClick: () => void;

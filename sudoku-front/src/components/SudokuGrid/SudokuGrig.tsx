@@ -9,7 +9,7 @@ interface SudokuGridProps {
 
 function SudokuGrid ({ selectedNumber, onClearSelectedNumber }: SudokuGridProps) {
 
-  const initialBoard = [
+  const initialBoard: (number | null)[] = [
     5, 3, null, null, 7, null, null, null, null,
     6, null, null, 1, 9, 5, null, null, null,
     null, 9, 8, null, null, null, null, 6, null,
@@ -21,10 +21,10 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber }: SudokuGridProps)
     null, null, null, null, 8, null, null, 7, 9
   ]
 
-  const [activeCell, setActiveCell] = useState(null);
+  const [activeCell, setActiveCell] = useState<(number | null)>(null);
   const [sudokuBoard, setSudokuBoard] = useState<(number | null)[]>(initialBoard);
 
-  const handleClick = (index) => {
+  const handleClick = (index: number): void => {
     setActiveCell(index);
   };
 
@@ -36,7 +36,7 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber }: SudokuGridProps)
       setSudokuBoard(updatedBoard);
       onClearSelectedNumber();
     }
-  }, [selectedNumber, activeCell, sudokuBoard, onClearSelectedNumber]);
+  }, [selectedNumber]);
 
 
   return (
