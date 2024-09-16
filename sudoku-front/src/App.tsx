@@ -1,18 +1,21 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import StartScreen from "./components/StartScreen/StartScreen.tsx";
+import GameBoard from "./components/GameBoard/GameBoard.tsx";
+
 
 function App() {
+  const [isGameStarted, setIsGameStarted] = useState(false);
 
   return (
-    <>
-      <div className={'start'}>
-        <h1>Sudoku</h1>
-        <button>Начать игру</button>
-      </div>
-    </>
-  )
+    <div className="App">
+      {isGameStarted ? (
+        <GameBoard onBack={() => setIsGameStarted(false)} />
+      ) : (
+        <StartScreen onStart={() => setIsGameStarted(true)} />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
