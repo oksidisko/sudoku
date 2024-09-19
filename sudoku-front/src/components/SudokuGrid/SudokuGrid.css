@@ -1,6 +1,7 @@
 .sudoku-grid {
+  margin-right: 6px;
+  margin-left: 6px;
   margin-bottom: 30px;
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   border: 2px solid black;
@@ -16,7 +17,7 @@
   align-items: center;
   aspect-ratio: 1/1;
   background-color: white;
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 500;
 }
 
