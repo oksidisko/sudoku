@@ -1,15 +1,15 @@
 .game-board {
   background-color: transparent;
-  padding: 0 16px;
 }
 
 .game-board__header {
+  padding: 0 6px;
   height: 40px;
   margin-bottom: 20px;
 }
 
 .game-board__actions {
-  padding: 0;
+  padding: 0 16px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
@@ -62,14 +62,14 @@
 }
 
 .game-board__numbers {
+  padding: 0 16px;
   display: flex;
   justify-content: space-between;
 }
 
 .game-board__number {
-  padding: 3px;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 36px;
 }
 
 .game-board__number:hover,
