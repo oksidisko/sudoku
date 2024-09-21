@@ -21,8 +21,13 @@
   font-weight: 500;
 }
 
+
+.is-highlighted {
+  background-color: #f6fdff;
+}
+
 .is-active {
-  background-color: aliceblue;
+  background-color: #d6efff;
 }
 
 .sudoku-cell:after,
