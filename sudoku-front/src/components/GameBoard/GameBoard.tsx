@@ -5,9 +5,10 @@ import GameActionButton from '../GameActionButton/GameActionButton.tsx';
 
 interface GameBoardProps {
   onBack: () => void;
+  initialBoard: Array<number|null>
 }
 
-function GameBoard({onBack}: GameBoardProps) {
+function GameBoard({onBack, initialBoard}: GameBoardProps) {
 
   const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
 
@@ -79,6 +80,7 @@ function GameBoard({onBack}: GameBoardProps) {
         <SudokuGrid
           selectedNumber={selectedNumber}
           onClearSelectedNumber={handleClearSelectedNumber}
+          initialBoard={initialBoard}
         />
 
         <div className="game-board__actions">
