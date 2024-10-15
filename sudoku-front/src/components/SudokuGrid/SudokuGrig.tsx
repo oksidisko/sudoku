@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './SudokuGrid.css'
+import { useActiveCell } from '../../ActiveCellContext';
 
 
 interface SudokuGridProps {
@@ -10,6 +11,7 @@ interface SudokuGridProps {
 
 function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard }: SudokuGridProps) {
 
+  const { activeCell, setActiveCell } = useActiveCell();
   const findCellsToHighlight = (index: number):number[] => {
     const indexArray = [];
     const numInRow = index % 9;
@@ -44,7 +46,6 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard }: Su
     return indexArray.filter((el) => el >= 0 && el <= 81)
   };
 
-  const [activeCell, setActiveCell] = useState<(number | null)>(null);
   const [highlightedCells, setHighlightedCells] = useState<(number | null) []>([]);
   const [sudokuBoard, setSudokuBoard] = useState<(number | null)[]>(initialBoard);
 

@@ -3,6 +3,7 @@ import './App.css'
 import StartScreen from "./components/StartScreen/StartScreen.tsx";
 import GameBoard from "./components/GameBoard/GameBoard.tsx";
 import {boards} from "../data/boards.ts";
+import { ActiveCellProvider } from './ActiveCellContext';
 
 
 function App() {
@@ -17,14 +18,16 @@ function App() {
             .split('')
             .map(item => item === '0' ? null : parseInt(item))
     );
-    
+
     setIsGameStarted(true);
   }
 
   return (
     <div className="App">
       {isGameStarted ? (
-        <GameBoard onBack={() => setIsGameStarted(false)} initialBoard={ initialBoard } />
+          <ActiveCellProvider>
+            <GameBoard onBack={() => setIsGameStarted(false)} initialBoard={ initialBoard } />
+          </ActiveCellProvider>
       ) : (
         <StartScreen onStart={startGame} />
       )}
