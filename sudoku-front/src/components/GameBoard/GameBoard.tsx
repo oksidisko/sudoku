@@ -5,7 +5,8 @@ import GameActionButton from '../GameActionButton/GameActionButton.tsx';
 
 interface GameBoardProps {
   onBack: () => void;
-  initialBoard: Array<number|null>
+  initialBoard: Array<number|null>;
+  solvedBoard: Array<number|null>;
 }
 
 function GameBoard({onBack, initialBoard}: GameBoardProps) {

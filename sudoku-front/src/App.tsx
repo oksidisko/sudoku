@@ -4,20 +4,26 @@ import StartScreen from "./components/StartScreen/StartScreen.tsx";
 import GameBoard from "./components/GameBoard/GameBoard.tsx";
 import {boards} from "../data/boards.ts";
 import { ActiveCellProvider } from './ActiveCellContext';
+import {solve} from "sudoku-core";
 
 
 function App() {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [initialBoard, setInitialBoard] = useState<Array<number|null>>([]);
+  const [solvedBoard, setSolvedBoard] = useState<Array<number|null>>(null);
 
   const startGame = () => {
-    const boardsForDifficulty = boards['easy'];
+    const boardsForDifficulty = boards['test'];
 
     setInitialBoard(
-        boardsForDifficulty[Math.floor(Math.random() * boardsForDifficulty.length)]
-            .split('')
-            .map(item => item === '0' ? null : parseInt(item))
+      boardsForDifficulty[Math.floor(Math.random() * boardsForDifficulty.length)]
+        .split('')
+        .map(item => item === '0' ? null : parseInt(item))
     );
+
+    setSolvedBoard(solve(initialBoard).board);
+
+    console.log(solve(initialBoard).board)
 
     setIsGameStarted(true);
   }
@@ -26,7 +32,7 @@ function App() {
     <div className="App">
       {isGameStarted ? (
           <ActiveCellProvider>
-            <GameBoard onBack={() => setIsGameStarted(false)} initialBoard={ initialBoard } />
+            <GameBoard onBack={() => setIsGameStarted(false)} initialBoard={ initialBoard } solvedBoard={solvedBoard} />
           </ActiveCellProvider>
       ) : (
         <StartScreen onStart={startGame} />
