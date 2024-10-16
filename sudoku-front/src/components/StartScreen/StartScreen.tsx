@@ -8,7 +8,7 @@ function StartScreen({ onStart }: StartScreenProps) {
   return (
     <div className="start">
       <h1>Sudoku</h1>
-      <button onClick={onStart}>Начать игру</button>
+      <button onClick={onStart}>New game</button>
     </div>
   );
 }

@@ -8,4 +8,8 @@
   align-items: center;
   justify-content: center;
   row-gap: 100px;
+
+  button {
+    min-width: 200px;
+  }
 }
