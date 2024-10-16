@@ -1,6 +1,6 @@
 export const boards: Record<string, Array<string>> = {
     'test': [
-      // All of 0, are ex 1
+      // All of '0', are ex '1'
         '439715628581426973672893450967184235843652197025937864354261789218379546796548312'
     ],
 

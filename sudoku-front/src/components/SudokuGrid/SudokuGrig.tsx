@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import './SudokuGrid.css'
-import { useActiveCell } from '../../ActiveCellContext';
+import { useSudokuBoard } from '../../SudokuBoardContext.tsx';
 
 
 interface SudokuGridProps {
   selectedNumber: number | null;
   onClearSelectedNumber: () => void;
   initialBoard: Array<number|null>;
+  solvedBoard: Array<number|null>;
 }
 
-function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard }: SudokuGridProps) {
+function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard, solvedBoard}: SudokuGridProps) {
 
-  const { activeCell, setActiveCell } = useActiveCell();
+  const { activeCell, setActiveCell, sudokuBoard, setSudokuBoard } = useSudokuBoard();
   const findCellsToHighlight = (index: number):number[] => {
     const indexArray = [];
     const numInRow = index % 9;
@@ -47,10 +48,9 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard }: Su
   };
 
   const [highlightedCells, setHighlightedCells] = useState<(number | null) []>([]);
-  const [sudokuBoard, setSudokuBoard] = useState<(number | null)[]>(initialBoard);
+
 
   const handleClick = (index: number): void => {
-    console.log(index)
     setActiveCell(index);
     setHighlightedCells(findCellsToHighlight(index));
   };
@@ -76,7 +76,12 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard }: Su
         sudokuBoard.map((num, index) => (
           <span
             key={index}
-            className={`sudoku-cell ${activeCell === index ? 'is-active' : ''} ${highlightedCells.includes(index) ? 'is-highlighted' : ''}`}
+            className={`
+            sudoku-cell
+            ${activeCell === index ? 'is-active' : ''}
+            ${highlightedCells.includes(index) ? 'is-highlighted' : ''}
+            ${sudokuBoard[index] !== solvedBoard[index] ? 'is-wrong' : ''}
+            `}
             onClick={() => handleClick(index)}
           >
             {num !== null ? num : ''}

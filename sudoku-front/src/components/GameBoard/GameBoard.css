@@ -1,5 +1,6 @@
 .game-board {
   background-color: transparent;
+  position: relative;
 }
 
 .game-board__header {
@@ -76,4 +77,36 @@
 .game-board__number:active,
 .game-board__number:focus {
   color: dodgerblue;
+}
+
+
+.alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 70vw;
+  height: 60vh;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .alert__text {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 80px;
+  }
+
+  .alert__emoji {
+    font-size: 80px;
+    margin-left: 25px;
+  }
 }

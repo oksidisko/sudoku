@@ -26,6 +26,10 @@
   background-color: #f6fdff;
 }
 
+.is-wrong {
+  color: orangered;
+}
+
 .is-active {
   background-color: #d6efff;
 }

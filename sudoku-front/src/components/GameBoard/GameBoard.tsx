@@ -1,24 +1,42 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './GameBoard.css'
 import SudokuGrid from '../SudokuGrid/SudokuGrig.tsx'
 import GameActionButton from '../GameActionButton/GameActionButton.tsx';
+import {useSudokuBoard} from "../../SudokuBoardContext.tsx";
 
 interface GameBoardProps {
   onBack: () => void;
   initialBoard: Array<number|null>;
-  solvedBoard: Array<number|null>;
 }
 
 function GameBoard({onBack, initialBoard}: GameBoardProps) {
 
+  const { activeCell, sudokuBoard, solvedBoard } = useSudokuBoard();
   const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
+  const [isGameFinished, setIsGameFinished] = useState(false);
 
   const handleNumberClick = (number: number) => {
     setSelectedNumber(number);
+    setIsGameFinished(CheckGameFinished())
   };
   const handleClearSelectedNumber = () => {
     setSelectedNumber(null);
   };
+
+  const CheckGameFinished = () => {
+    for (let i = 0; i < sudokuBoard.length; i++) {
+      if (sudokuBoard[i] !== solvedBoard[i]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    if (CheckGameFinished()) {
+      setIsGameFinished(true);
+    }
+  }, [sudokuBoard]);
 
   const handleUndo = () => {
       console.log('Undo clicked');
@@ -70,6 +88,11 @@ function GameBoard({onBack, initialBoard}: GameBoardProps) {
   return (
     <>
       <div className="game-board">
+        {isGameFinished && <div className="alert">
+          <span className='alert__emoji'>🎉</span>
+          <span className='alert__text'>You win!</span>
+          <button className="button" onClick={onBack}>Back to main menu</button>
+        </div>}
         <header className="game-board__header">
           <button className="back-button" onClick={onBack}>
           <span className="back-button__icon">
@@ -82,6 +105,7 @@ function GameBoard({onBack, initialBoard}: GameBoardProps) {
           selectedNumber={selectedNumber}
           onClearSelectedNumber={handleClearSelectedNumber}
           initialBoard={initialBoard}
+          solvedBoard={solvedBoard}
         />
 
         <div className="game-board__actions">
@@ -103,7 +127,7 @@ function GameBoard({onBack, initialBoard}: GameBoardProps) {
           />
           <GameActionButton
             icon={<HintIcon/>}
-            text="Подсказка"
+            text="Проверить"
             onClick={handleHint}
           />
         </div>
