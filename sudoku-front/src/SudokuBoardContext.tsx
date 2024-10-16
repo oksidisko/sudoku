@@ -20,9 +20,10 @@ export const SudokuBoardProvider = ({
   initialBoard: (number | null)[];
   initialSolvedBoard: (number | null)[];
 }) => {
-  const [activeCell, setActiveCell] = useState<number | null>(null);
+
   const [sudokuBoard, setSudokuBoard] = useState<(number | null)[]>(initialBoard);
   const [solvedBoard, setSolvedBoard] = useState<(number | null)[]>(initialSolvedBoard);
+  const [activeCell, setActiveCell] = useState<number | null>(sudokuBoard.indexOf(null));
 
 
   return (

@@ -46,14 +46,15 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard, solv
 
     return indexArray.filter((el) => el >= 0 && el <= 81)
   };
-
-  const [highlightedCells, setHighlightedCells] = useState<(number | null) []>([]);
+  const [highlightedCells, setHighlightedCells] = useState<(number | null) []>(findCellsToHighlight(initialBoard.indexOf(null)));
 
 
   const handleClick = (index: number): void => {
     setActiveCell(index);
     setHighlightedCells(findCellsToHighlight(index));
   };
+
+
 
 
   useEffect(() => {

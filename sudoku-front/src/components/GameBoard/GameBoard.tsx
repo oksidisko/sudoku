@@ -89,9 +89,11 @@ function GameBoard({onBack, initialBoard}: GameBoardProps) {
     <>
       <div className="game-board">
         {isGameFinished && <div className="alert">
-          <span className='alert__emoji'>🎉</span>
-          <span className='alert__text'>You win!</span>
-          <button className="button" onClick={onBack}>Back to main menu</button>
+          <div className='alert__content'>
+            <span className='alert__emoji'>🎉</span>
+            <span className='alert__text'>You win!</span>
+            <button className="button" onClick={onBack}>Back to main menu</button>
+          </div>
         </div>}
         <header className="game-board__header">
           <button className="back-button" onClick={onBack}>
