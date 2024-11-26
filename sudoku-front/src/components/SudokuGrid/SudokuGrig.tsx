@@ -3,7 +3,7 @@ import './SudokuGrid.css'
 
 
 interface SudokuGridProps {
-  selectedNumber: number | null;
+  selectedNumber: number | null | undefined;
   onClearSelectedNumber: () => void;
   initialBoard: Array<number|null>;
 }
@@ -49,22 +49,21 @@ function SudokuGrid ({ selectedNumber, onClearSelectedNumber, initialBoard }: Su
   const [sudokuBoard, setSudokuBoard] = useState<(number | null)[]>(initialBoard);
 
   const handleClick = (index: number): void => {
-    console.log(index)
     setActiveCell(index);
     setHighlightedCells(findCellsToHighlight(index));
   };
 
 
   useEffect(() => {
-    if (activeCell !== null && selectedNumber !== null) {
+    if (activeCell !== null && selectedNumber !== undefined) {
       // Check if the cell is not an initial cell
       if (initialBoard[activeCell] === null) {
         const updatedBoard = [...sudokuBoard];
         updatedBoard[activeCell] = selectedNumber;
         setSudokuBoard(updatedBoard);
-        onClearSelectedNumber();
+        onClearSelectedNumber();  
       }
-    }
+    } 
   }, [selectedNumber]);
 
 

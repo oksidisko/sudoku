@@ -10,20 +10,20 @@ interface GameBoardProps {
 
 function GameBoard({onBack, initialBoard}: GameBoardProps) {
 
-  const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
+  const [selectedNumber, setSelectedNumber] = useState<number | null | undefined>(null);
 
   const handleNumberClick = (number: number) => {
     setSelectedNumber(number);
   };
   const handleClearSelectedNumber = () => {
-    setSelectedNumber(null);
+    setSelectedNumber(undefined);
   };
 
   const handleUndo = () => {
       console.log('Undo clicked');
     };
   const handleErase = () => {
-      console.log('Erase clicked');
+      setSelectedNumber(null);
     };
   const handleNote = () => {
       console.log('Note clicked');
